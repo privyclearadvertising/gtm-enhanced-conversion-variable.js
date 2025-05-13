@@ -29,6 +29,9 @@ This is a **Custom JavaScript Variable** in GTM that outputs the following struc
   }
 }
 
+
+---
+
 ## Create Variables in GTM
 
 Before using this variable, you must create the following GTM variables (usually as DOM Elements, Data Layer Variables, or Auto-Event Variables) depending on your data layer or form setup.
@@ -69,5 +72,3 @@ gtag("set", "user_data", {{User Provided Data}});
   Check the Tag Assistant for the user_data payload
 
   Confirm values are present and properly mapped
-
-
