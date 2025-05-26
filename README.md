@@ -24,9 +24,14 @@ Capture user-provided data in **Google Tag Manager** (GTM) and send it to **Goog
    *Tools & Settings → Conversions → select your conversion action → Settings → Enhanced Conversions → Turn On → choose “Google Tag Manager.”*
 
 4. **Reference the variable** in your Google Ads conversion tag  
-   *Template Tag*: toggle “Enhanced Conversions” → choose **Variable** → pick `Enhanced Conversion Object`.  
-   <br>*Custom HTML Tag*: add  
-   ```html
-   <script>
-     gtag('set', 'user_data', {{Enhanced Conversion Object}});
-   </script>
+   - **Template Tag:** Toggle **Enhanced Conversions** → choose **Variable** → pick `Enhanced Conversion Object`.  
+   - **Custom HTML Tag:**  
+     ```html
+     <script>
+       gtag('set', 'user_data', {{Enhanced Conversion Object}});
+     </script>
+     ```
+
+5. **Publish & Test**  
+   *Tag Assistant Preview* → submit your form → confirm a `user_data` payload with hashed values appears.
+
