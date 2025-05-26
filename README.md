@@ -1,74 +1,32 @@
-# gtm-enhanced-conversion-variable.js
+# GTM-Enhanced-Conversion-Variable
 
-This script is designed for use as a **Custom JavaScript Variable** in Google Tag Manager. It returns a structured object containing user-provided data (email, phone, and address) for Enhanced Conversion tracking in Google Ads.
-
----
-
-## Purpose
-
-Enhanced Conversions improve tracking accuracy by securely sending hashed customer data to Google Ads. This variable gathers that data from other GTM variables and packages it into the correct format expected by the `gtag("set", "user_data", ...)` method.
+Capture user-provided data in **Google Tag Manager** (GTM) and send it to **Google Ads Enhanced Conversions**
 
 ---
 
-## File: `gtm-enhanced-conversion-variable.js`
+##  Files
 
-This is a **Custom JavaScript Variable** in GTM that outputs the following structure:
-
-```javascript
-{
-  email: {{Your Email Variable}},
-  phone_number: {{Your Phone Variable}},
-  address: {
-    first_name: {{First Name Variable}},
-    last_name: {{Last Name Variable}},
-    street: {{Street Address Variable}},
-    city: {{City Variable}},
-    region: {{Region/State Variable}},
-    postal_code: {{ZIP Code Variable}},
-    country: {{Country Variable}}
-  }
-}
-
+| File | Purpose |
+|------|---------|
+| **`gtm-enhanced-conversion-variable.js`** | Custom JavaScript Variable that returns a properly-formatted `user_data` object for `gtag("set", …)` |
 
 ---
 
-## Create Variables in GTM
+##  Quick Start
 
-Before using this variable, you must create the following GTM variables (usually as DOM Elements, Data Layer Variables, or Auto-Event Variables) depending on your data layer or form setup.
+1. **Create GTM variables** for each data point you collect (DOM Element, Data Layer, or Auto-Event).  
+   *Email, Phone, First Name, Last Name, Street, City, Region/State, ZIP, Country*
 
-Field	Variable Name Example	Type
-Email	email	Data Layer / DOM Element
-Phone	phone_number	Data Layer / DOM Element
-First Name	first_name	DOM Element or DL Variable
-Last Name	last_name	DOM Element or DL Variable
-Street	street	DOM Element or DL Variable
-City	city	DOM Element or DL Variable
-Region/State	region	DOM Element or DL Variable
-Postal Code	postal_code	DOM Element or DL Variable
-Country	country	DOM Element or DL Variable
+2. **Add the Custom JS Variable**  
+   *GTM → Variables → New → Custom JavaScript → paste the code below → name it `Enhanced Conversion Object`.*
 
-You may name these however you'd like, but you must update the variable names inside gtm-enhanced-conversion-variable.js to match your setup.
+3. **Enable Enhanced Conversions** in Google Ads  
+   *Tools & Settings → Conversions → select your conversion action → Settings → Enhanced Conversions → Turn On → choose “Google Tag Manager.”*
 
-## How To Use in GTM
-
-1. Create a new Custom JavaScript Variable
-
-  Name it: User Provided Data or Enhanced Conversion Object
-
-  Paste in the contents of gtm-enhanced-conversion-variable.js
-
-2. Create all required GTM variables
-
-  These must extract the corresponding values from your page/form
-
-3. Reference the variable in your Google Ads tag
-
-  In your Google Ads conversion tag (with Enhanced Conversions enabled), add this line to your tag's custom HTML or use the UI field if available:
-
-gtag("set", "user_data", {{User Provided Data}});
-
-4. Submit your form
-
-  Check the Tag Assistant for the user_data payload
-
-  Confirm values are present and properly mapped
+4. **Reference the variable** in your Google Ads conversion tag  
+   *Template Tag*: toggle “Enhanced Conversions” → choose **Variable** → pick `Enhanced Conversion Object`.  
+   <br>*Custom HTML Tag*: add  
+   ```html
+   <script>
+     gtag('set', 'user_data', {{Enhanced Conversion Object}});
+   </script>
